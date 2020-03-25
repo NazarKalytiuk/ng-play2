@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuildingComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    console.log(`new buildComponent created ${JSON.stringify(this)}`)
+  }
 
   ngOnInit(): void {
   }
