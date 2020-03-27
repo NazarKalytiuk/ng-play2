@@ -4,11 +4,12 @@ import {BuildingComponent} from "./building/building.component";
 
 
 const routes: Routes = [
-  {path: 'building', component: BuildingComponent}
+  // {path: '', pathMatch: 'full', redirectTo: '/building/1'},
+  {path: 'building/:id', component: BuildingComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {enableTracing: false})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,9 +1,18 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BuildingService {
 
-  constructor() { }
+  building: Observable<String>;
+
+
+  constructor() {
+  }
+
+  getBuildings() {
+    return this.building
+  }
 }

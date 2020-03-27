@@ -19,6 +19,11 @@
     text-decoration: none;
   }
 
+  .active {
+    background-color: #4CAF50;
+    color: white;
+  }
+
   /* Change the link color to #111 (black) on hover */
   li a:hover {
     background-color: green;
@@ -27,9 +32,10 @@
 </style>
 
 <ul>
-  <li><a href="/">main</a></li>
-  <li><a href="/building">building1</a></li>
-  <li><a href="/building">building2</a></li>
+  <li><a routerLink="/" routerLinkActive="active">main</a></li>
+  <li><a routerLink="/building/1" routerLinkActive="active">building1</a></li>
+  <li><a routerLink="/building/2" routerLinkActive="active">building2</a></li>
+  <li><a routerLink="/building/3" routerLinkActive="active">building2</a></li>
 </ul>
 
 
