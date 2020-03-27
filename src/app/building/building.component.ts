@@ -11,8 +11,9 @@ import {BuildingService} from "../building.service";
 })
 export class BuildingComponent implements OnInit {
 
-  hero: String = "default value";
-  task$;
+  stringProperty: String = "default value";
+
+  observProp$;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,15 +28,13 @@ export class BuildingComponent implements OnInit {
     console.log(`taken once onNgInit -> ${id1}`);
 
     this.route.params.subscribe(params => {
-      this.hero = params['id'];
-
       this.service.getBuildings(params['id'])
         .subscribe(data => {
-          this.hero = JSON.stringify(data)
+          this.stringProperty = JSON.stringify(data)
         })
     });
 
-    this.task$ = this.route.paramMap.pipe(
+    this.observProp$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
         this.service.getBuildings(params.get("id"))
       )

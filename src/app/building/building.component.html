@@ -1,9 +1,10 @@
-<h2>{{hero}}</h2>
+<h1>Building component</h1>
 
-<h3>{{task$ | async}}</h3>
+<p>stringProperty: {{stringProperty}}</p>
 
-<p>building works!</p>
+<p>observProp$: {{observProp$ | async}}</p>
 
 
-<app-task *ngIf="(task$ | async).title as calcTitle"
-  [task]="calcTitle"></app-task>
+<app-task *ngIf="(observProp$ | async) as result"
+          [task]="result">
+</app-task>
