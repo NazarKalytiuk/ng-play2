@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {switchMap} from "rxjs/operators";
 import {Observable} from "rxjs";
+import {BuildingService} from "../building.service";
 
 @Component({
   selector: 'app-building',
@@ -11,10 +12,12 @@ import {Observable} from "rxjs";
 export class BuildingComponent implements OnInit {
 
   hero: String = "default value";
+  task$;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private service: BuildingService
   ) {
     console.log(`new buildComponent created ${new Date()}`)
   }
@@ -24,17 +27,19 @@ export class BuildingComponent implements OnInit {
     console.log(`taken once onNgInit -> ${id1}`);
 
     this.route.params.subscribe(params => {
-      this.hero = params['id']
-    })
+      this.hero = params['id'];
 
+      this.service.getBuildings(params['id'])
+        .subscribe(data => {
+          this.hero = JSON.stringify(data)
+        })
+    });
 
-    /*this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => {
-        let id = params.get("id");
-        console.log(id);
-        return "some...";
-      })
-    )*/
+    this.task$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        this.service.getBuildings(params.get("id"))
+      )
+    )
   }
 
 }
