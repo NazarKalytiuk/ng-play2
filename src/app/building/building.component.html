@@ -3,3 +3,7 @@
 <h3>{{task$ | async}}</h3>
 
 <p>building works!</p>
+
+
+<app-task *ngIf="(task$ | async).title as calcTitle"
+  [task]="calcTitle"></app-task>
